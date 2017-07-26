@@ -19,17 +19,24 @@ class Watchlist {
 
   private Watchlist() throws IOException {
     List<Aktie> aktien = readAktienFromJSON();
+    Aktie.outTitle();
     for(Aktie aktie: aktien) {
+      readKursForAktie(aktie);
       aktie.calculate();
       aktie.out();
     }
+    Aktie.outSumme(aktien);
+  }
+
+  private void readKursForAktie(Aktie aktie) {
+    aktie.aktuellerKurs = 123.00; // TODO: read kurs
   }
 
   private List<Aktie> readAktienFromJSON() throws IOException {
     Gson gson = new Gson();
     JsonReader reader = new JsonReader(new FileReader("./resources/watchlist.json"));
     JsonObject jsonObject = new JsonParser().parse(reader).getAsJsonObject();
-    JsonArray jsonArray = jsonObject.get("aktie").getAsJsonArray();
+    JsonArray jsonArray = jsonObject.get("aktien").getAsJsonArray();
     List<Aktie> aktien = new ArrayList<Aktie>();
     for(int i = 0; i < jsonArray.size(); i++) {
       Aktie aktie = gson.fromJson(jsonArray.get(i), Aktie.class);
