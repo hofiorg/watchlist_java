@@ -7,7 +7,8 @@
       "einzelpreis": 129.00,
       "stueckzahl": 3,
       "transaktionsgeb": 6.25,
-      "einstandskurs": 131.0833
+      "einstandskurs": 131.0833,
+      "parseUrl": "http://www.finanzen.net/aktien/Apple-Aktie"
     },
     {
       "name": "Tesla Aktie",
@@ -16,7 +17,8 @@
       "einzelpreis": 282.5,
       "stueckzahl": 6,
       "transaktionsgeb": 6.25,
-      "einstandskurs": 283.5417
+      "einstandskurs": 283.5417,
+      "parseUrl": "http://www.finanzen.net/aktien/Tesla-Aktie"
     }
   ]
 }

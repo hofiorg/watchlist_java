@@ -7,6 +7,9 @@ import static org.hofi.watchlist.Util.formatString;
 import static org.hofi.watchlist.Util.formatNumber;
 
 class Aktie {
+
+  private static final String EMPTY_HEADER = formatString("") + " ";
+
   private String name;
   private String isin;
   private String handelsplatz;
@@ -16,9 +19,11 @@ class Aktie {
   private Double einstandskurs;
   private Double preis;
   Double aktuellerKurs;
+  String kursZeit;
   private Double guv;
   private Double einstandswert;
   private Double guvNachGeb;
+  String parseUrl;
 
   void calculate() {
     preis = einzelpreis * stueckzahl;
@@ -29,11 +34,11 @@ class Aktie {
 
   static void outSumme(List<Aktie> aktien) {
 
-    Double summePreis = new Double(0);
-    Double summeTransaktionsgeb = new Double(0);
-    Double summeGuv = new Double(0);
-    Double summeEinstandswert = new Double(0);
-    Double summeGuvNachGeb = new Double(0);
+    Double summePreis = 0d;
+    Double summeTransaktionsgeb = 0d;
+    Double summeGuv = 0d;
+    Double summeEinstandswert = 0d;
+    Double summeGuvNachGeb = 0d;
     for(Aktie aktie : aktien) {
       summePreis += aktie.preis;
       summeTransaktionsgeb += aktie.transaktionsgeb;
@@ -43,16 +48,17 @@ class Aktie {
     }
 
     System.out.println(
-      formatString("") + " " +
-      formatString("") + " " +
-      formatString("") + " " +
-      formatString("") + " " +
-      formatString("") + " " +
+      EMPTY_HEADER +
+      EMPTY_HEADER +
+      EMPTY_HEADER +
+      EMPTY_HEADER +
+      EMPTY_HEADER +
       formatString(formatEuroNumber(summePreis)) + " " +
       formatString(formatEuroNumber(summeTransaktionsgeb)) + " " +
-      formatString("") + " " +
+      EMPTY_HEADER +
+      EMPTY_HEADER +
       formatString(formatEuroNumber(summeGuv)) + " " +
-      formatString("") + " " +
+      EMPTY_HEADER +
       formatString(formatEuroNumber(summeEinstandswert)) + " " +
       formatString(formatEuroNumber(summeGuvNachGeb))
     );
@@ -68,6 +74,7 @@ class Aktie {
       formatString("Preis") + " " +
       formatString("Transaktionsgeb.") + " " +
       formatString("aktueller Kurs") + " " +
+      formatString("Kurszeit") + " " +
       formatString("Gewinn/Verlust") + " " +
       formatString("Einstandskurs") + " " +
       formatString("Einstandswert") + " " +
@@ -85,6 +92,7 @@ class Aktie {
       formatString(formatEuroNumber(preis)) + " " +
       formatString(formatEuroNumber(transaktionsgeb)) + " " +
       formatString(formatEuroNumber(aktuellerKurs)) + " " +
+      formatString(kursZeit) + " " +
       formatString(formatEuroNumber(guv)) + " " +
       formatString(formatEuroNumber(einstandskurs)) + " " +
       formatString(formatEuroNumber(einstandswert)) + " " +

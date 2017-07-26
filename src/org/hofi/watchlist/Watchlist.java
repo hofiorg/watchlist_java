@@ -5,19 +5,26 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import org.apache.commons.io.IOUtils;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hofi.watchlist.Util.parseNumber;
+
 class Watchlist {
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException, ParseException {
     new Watchlist();
   }
 
-  private Watchlist() throws IOException {
+  private Watchlist() throws IOException, ParseException {
     List<Aktie> aktien = readAktienFromJSON();
     Aktie.outTitle();
     for(Aktie aktie: aktien) {
@@ -28,8 +35,14 @@ class Watchlist {
     Aktie.outSumme(aktien);
   }
 
-  private void readKursForAktie(Aktie aktie) {
-    aktie.aktuellerKurs = 123.00; // TODO: read kurs
+  private void readKursForAktie(Aktie aktie) throws IOException, ParseException {
+    String body = readHTTPResponseToString(aktie.parseUrl);
+    String from = "<div class=\"col-xs-5 col-sm-4 text-sm-right text-nowrap\">";
+    String till = "<span>";
+    aktie.aktuellerKurs =  parseNumber(readFromBody(body, from, till)).doubleValue();
+    from = "<div class=\"quotebox-time\">";
+    till = "</div>";
+    aktie.kursZeit = readFromBody(body, from, till);
   }
 
   private List<Aktie> readAktienFromJSON() throws IOException {
@@ -43,5 +56,21 @@ class Watchlist {
       aktien.add(aktie);
     }
     return aktien;
+  }
+
+  private String readHTTPResponseToString(String parseUrl) throws IOException {
+    URL url = new URL(parseUrl);
+    URLConnection con = url.openConnection();
+    InputStream in = con.getInputStream();
+    String encoding = con.getContentEncoding();
+    encoding = encoding == null ? "UTF-8" : encoding;
+    return IOUtils.toString(in, encoding);
+  }
+
+  private String readFromBody(String body, String from, String till) {
+    if(body.contains(from)) {
+      return body.substring(body.indexOf(from) + from.length(), body.indexOf(till, body.indexOf(from)));
+    }
+    return null;
   }
 }
