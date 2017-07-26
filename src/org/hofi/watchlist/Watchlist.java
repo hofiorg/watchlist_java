@@ -36,7 +36,7 @@ class Watchlist {
   }
 
   private void readKursForAktie(Aktie aktie) throws IOException, ParseException {
-    String body = readHTTPResponseToString(aktie.parseUrl);
+    String body = readHTTPResponseToString("http://www.finanzen.net/aktien/" + aktie.name);
     String from = "<div class=\"col-xs-5 col-sm-4 text-sm-right text-nowrap\">";
     String till = "<span>";
     aktie.aktuellerKurs =  parseNumber(readFromBody(body, from, till)).doubleValue();

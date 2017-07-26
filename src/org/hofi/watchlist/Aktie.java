@@ -10,7 +10,7 @@ class Aktie {
 
   private static final String EMPTY_HEADER = formatString("") + " ";
 
-  private String name;
+  String name;
   private String isin;
   private String handelsplatz;
   private Double einzelpreis;
@@ -23,7 +23,6 @@ class Aktie {
   private Double guv;
   private Double einstandswert;
   private Double guvNachGeb;
-  String parseUrl;
 
   void calculate() {
     preis = einzelpreis * stueckzahl;

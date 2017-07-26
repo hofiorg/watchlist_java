@@ -1,24 +1,22 @@
 {
   "aktien": [
     {
-      "name": "Apple Aktie",
+      "name": "Apple-Aktie",
       "isin": "US0378331005",
       "handelsplatz": "Xetra",
       "einzelpreis": 129.00,
       "stueckzahl": 3,
       "transaktionsgeb": 6.25,
-      "einstandskurs": 131.0833,
-      "parseUrl": "http://www.finanzen.net/aktien/Apple-Aktie"
+      "einstandskurs": 131.0833
     },
     {
-      "name": "Tesla Aktie",
+      "name": "Tesla-Aktie",
       "isin": "US88160R1014",
       "handelsplatz": "Xetra",
       "einzelpreis": 282.5,
       "stueckzahl": 6,
       "transaktionsgeb": 6.25,
-      "einstandskurs": 283.5417,
-      "parseUrl": "http://www.finanzen.net/aktien/Tesla-Aktie"
+      "einstandskurs": 283.5417
     }
   ]
 }
