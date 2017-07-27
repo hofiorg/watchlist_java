@@ -20,6 +20,6 @@ class Util {
   }
 
   static String formatString(String s) {
-    return String.format("%18s", s);
+    return String.format("%17s", s);
   }
 }

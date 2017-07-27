@@ -23,6 +23,7 @@ class Aktie {
   private Double guv;
   private Double einstandswert;
   private Double guvNachGeb;
+  String boerseKurs;
 
   void calculate() {
     preis = einzelpreis * stueckzahl;
@@ -56,6 +57,7 @@ class Aktie {
       formatString(formatEuroNumber(summeTransaktionsgeb)) + " " +
       EMPTY_HEADER +
       EMPTY_HEADER +
+      EMPTY_HEADER +
       formatString(formatEuroNumber(summeGuv)) + " " +
       EMPTY_HEADER +
       formatString(formatEuroNumber(summeEinstandswert)) + " " +
@@ -71,9 +73,10 @@ class Aktie {
       formatString("Einzelpreis") + " " +
       formatString("Stückzahl") + " " +
       formatString("Preis") + " " +
-      formatString("Transaktionsgeb.") + " " +
+      formatString("Transgeb.") + " " +
       formatString("aktueller Kurs") + " " +
       formatString("Kurszeit") + " " +
+      formatString("Börse Kurs") + " " +
       formatString("Gewinn/Verlust") + " " +
       formatString("Einstandskurs") + " " +
       formatString("Einstandswert") + " " +
@@ -92,6 +95,7 @@ class Aktie {
       formatString(formatEuroNumber(transaktionsgeb)) + " " +
       formatString(formatEuroNumber(aktuellerKurs)) + " " +
       formatString(kursZeit) + " " +
+      formatString(boerseKurs) + " " +
       formatString(formatEuroNumber(guv)) + " " +
       formatString(formatEuroNumber(einstandskurs)) + " " +
       formatString(formatEuroNumber(einstandswert)) + " " +

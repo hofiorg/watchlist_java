@@ -43,6 +43,12 @@ class Watchlist {
     from = "<div class=\"quotebox-time\">";
     till = "</div>";
     aktie.kursZeit = readFromBody(body, from, till);
+
+
+
+    from = "<div class=\"menuDown color-blue pointer\">";
+    till = "<ul class=\"hidden-xs\"";
+    aktie.boerseKurs = readFromBody(body, from, till);
   }
 
   private List<Aktie> readAktienFromJSON() throws IOException {
@@ -68,9 +74,14 @@ class Watchlist {
   }
 
   private String readFromBody(String body, String from, String till) {
-    if(body.contains(from)) {
-      return body.substring(body.indexOf(from) + from.length(), body.indexOf(till, body.indexOf(from)));
-    }
-    return null;
+    if(!body.contains(from))
+      throw new IllegalStateException("from not found: " + from);
+
+    if(!body.contains(till))
+      throw new IllegalStateException("till not found: " + till);
+
+    int fromPos = body.indexOf(from) + from.length();
+    int tillPos = body.indexOf(till, body.indexOf(from));
+    return body.substring(fromPos, tillPos);
   }
 }
