@@ -1,10 +1,9 @@
 package org.hofi.watchlist;
 
-import java.util.List;
+import static org.hofi.utils.NumberUtils.*;
 
-import static org.hofi.watchlist.Util.formatEuroNumber;
+import java.util.List;
 import static org.hofi.watchlist.Util.formatString;
-import static org.hofi.watchlist.Util.formatNumber;
 
 class Aktie {
 
