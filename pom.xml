@@ -18,5 +18,10 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.hofi.utils</groupId>
+            <artifactId>hofiutils</artifactId>
+            <version>1.0.7</version>
+        </dependency>
     </dependencies>
 </project>
